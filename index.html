@@ -58,8 +58,8 @@
                 <div class="plus-minus-btn">
                     <!-- add ID for sign plus and sign minus -->
                    
-                    <p id="ticket-increase">+</p>
-                    <p id="ticket-decrease">-</p>
+                    <p id="ticket-increase" onclick="firstClassTicketHandle(true)">+</p>
+                    <p id="ticket-decrease" onclick="firstClassTicketHandle(false)">-</p>
                 </div>
             </div>
             
@@ -70,8 +70,8 @@
                     <h5 id="economyTicketTotalCost">$100</h5>
                 </div>
                 <div class="plus-minus-btn">
-                    <p id="economy-ticket-increase">+</p>
-                    <p id="economy-ticket-decrease">-</p>
+                    <p id="economy-ticket-increase" onclick="economyClassTicketHandle(true)">+</p>
+                    <p id="economy-ticket-decrease" onclick="economyClassTicketHandle(false)">-</p>
                 </div>
             </div>
             <div class="calculations">
@@ -114,12 +114,12 @@
     <!--Thank You-->
     <script>
         //for first class ticket js code
-        document.getElementById('ticket-increase').addEventListener('click',function(){
+       /*  document.getElementById('ticket-increase').addEventListener('click',function(){
             firstClassTicketHandle(true);
         });
         document.getElementById('ticket-decrease').addEventListener('click',function(){
             firstClassTicketHandle(false);
-        });
+        }); */
         function firstClassTicketHandle(isIncrease){
             const ticketInput = document.getElementById('ticket-quantity');
             const ticketQuantity = parseInt(ticketInput.value);
@@ -138,12 +138,12 @@
         }
 
         //for economy class ticket js code
-        document.getElementById('economy-ticket-increase').addEventListener('click',function(){
+        /* document.getElementById('economy-ticket-increase').addEventListener('click',function(){
             economyClassTicketHandle(true);
         });
         document.getElementById('economy-ticket-decrease').addEventListener('click',function(){
             economyClassTicketHandle(false);
-        }); 
+        });  */
         function economyClassTicketHandle(isIncrease){
             const ticketInput = document.getElementById('economy-ticket-quantity');
             const ticketQuantity = parseInt(ticketInput.value);
