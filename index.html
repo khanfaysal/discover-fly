@@ -66,11 +66,12 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input id="" class="inp-style inp-width" type="number" name="">
+                    <input id="economy-ticket-quantity" class="inp-style inp-width" value="1" type="number" name="">
+                    <h5 id="economyTicketTotalCost">$100</h5>
                 </div>
                 <div class="plus-minus-btn">
-                    <p id="ticket-increase">+</p>
-                    <p id="ticket-decrease">-</p>
+                    <p id="economy-ticket-increase">+</p>
+                    <p id="economy-ticket-decrease">-</p>
                 </div>
             </div>
             <div class="calculations">
@@ -114,33 +115,52 @@
     <script>
         //for first class ticket js code
         document.getElementById('ticket-increase').addEventListener('click',function(){
-            const ticketInput = document.getElementById('ticket-quantity');
-
-            const ticketQuantity = parseInt(ticketInput.value);
-            //console.log(ticketQuantity);
-            const ticketNewCount = ticketQuantity + 1;
-            ticketInput.value = ticketNewCount;
-            // const firstClassTicketCost = 150;
-             const ticketTotalCost = ticketNewCount * 150;
-             document.getElementById('ticketTotalCost').innerText = '$' + ticketTotalCost; 
-
-
+            firstClassTicketHandle(true);
         });
         document.getElementById('ticket-decrease').addEventListener('click',function(){
+            firstClassTicketHandle(false);
+        });
+        function firstClassTicketHandle(isIncrease){
             const ticketInput = document.getElementById('ticket-quantity');
-
             const ticketQuantity = parseInt(ticketInput.value);
-            //console.log(ticketQuantity);
-            const ticketNewCount = ticketQuantity - 1;
+            //const ticketNewCount = ticketQuantity + 1;
+            let ticketNewCount = ticketQuantity;
+            if(isIncrease == true){
+                ticketNewCount = ticketQuantity + 1;
+            }
+            if(isIncrease == false && ticketQuantity > 0){
+                ticketNewCount = ticketQuantity - 1;
+            }
             ticketInput.value = ticketNewCount;
             // const firstClassTicketCost = 150;
-             const ticketTotalCost = ticketNewCount * 150;
-             document.getElementById('ticketTotalCost').innerText = '$' + ticketTotalCost; 
-
-
-        });
+            const ticketTotalCost = ticketNewCount * 150;
+            document.getElementById('ticketTotalCost').innerText = '$' + ticketTotalCost; 
+        }
 
         //for economy class ticket js code
+        document.getElementById('economy-ticket-increase').addEventListener('click',function(){
+            economyClassTicketHandle(true);
+        });
+        document.getElementById('economy-ticket-decrease').addEventListener('click',function(){
+            economyClassTicketHandle(false);
+        }); 
+        function economyClassTicketHandle(isIncrease){
+            const ticketInput = document.getElementById('economy-ticket-quantity');
+            const ticketQuantity = parseInt(ticketInput.value);
+            //const ticketNewCount = ticketQuantity + 1;
+            let ticketNewCount = ticketQuantity;
+            if(isIncrease == true){
+                ticketNewCount = ticketQuantity + 1;
+            }
+            if(isIncrease == false && ticketQuantity > 0){
+                ticketNewCount = ticketQuantity - 1;
+            }
+            ticketInput.value = ticketNewCount;
+            // const firstClassTicketCost = 100;
+            const economyTicketTotalCost = ticketNewCount * 100;
+            document.getElementById('economyTicketTotalCost').innerText = '$' + economyTicketTotalCost;
+        }
+
 
     </script>
 </body>
