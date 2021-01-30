@@ -52,22 +52,22 @@
                 <div>
                     <label for="">First Class ($150)</label>
                     <!-- addd input ID -->
-                    <input id="ticket-quantity" class="inp-style inp-width" value="1" type="number" name="">
-                    <h5 id="ticketTotalCost">$150</h5>
+                    <input id="ticket-quantity" class="inp-style inp-width" value="0" type="number" name="">
+                    <h5 id="ticketTotalCost" class="ticket-price">$150</h5>
                 </div>
                 <div class="plus-minus-btn">
                     <!-- add ID for sign plus and sign minus -->
                    
-                    <p id="ticket-increase" onclick="firstClassTicketHandle(true)">+</p>
-                    <p id="ticket-decrease" onclick="firstClassTicketHandle(false)">-</p>
+                    <p id="ticket-increase" onclick="firstClassTicketHandle( true)">+</p>
+                    <p id="ticket-decrease" onclick="firstClassTicketHandle( false)">-</p>
                 </div>
             </div>
             
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input id="economy-ticket-quantity" class="inp-style inp-width" value="1" type="number" name="">
-                    <h5 id="economyTicketTotalCost">$100</h5>
+                    <input id="economy-ticket-quantity" class="inp-style inp-width" value="0" type="number" name="">
+                    <h5 id="economyTicketTotalCost" class="ticket-price">$100</h5>
                 </div>
                 <div class="plus-minus-btn">
                     <p id="economy-ticket-increase" onclick="economyClassTicketHandle(true)">+</p>
@@ -80,7 +80,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$500</p>
+                        <p id="total-ticket-price">$500</p>
                     </div>
                 </div>
 
@@ -89,7 +89,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p id="tax-amount">$50</p>
                     </div>
                 </div>
                 <hr>
@@ -98,11 +98,11 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p id="total-amount">$550</p>
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button id="submit-button" class="btn-style">Book Now</button>
         </div>
 
         <div class="booking-content">
@@ -113,14 +113,8 @@
 
     <!--Thank You-->
     <script>
-        //for first class ticket js code
-       /*  document.getElementById('ticket-increase').addEventListener('click',function(){
-            firstClassTicketHandle(true);
-        });
-        document.getElementById('ticket-decrease').addEventListener('click',function(){
-            firstClassTicketHandle(false);
-        }); */
-        function firstClassTicketHandle(isIncrease){
+        
+         function firstClassTicketHandle(isIncrease){
             const ticketInput = document.getElementById('ticket-quantity');
             const ticketQuantity = parseInt(ticketInput.value);
             //const ticketNewCount = ticketQuantity + 1;
@@ -135,15 +129,10 @@
             // const firstClassTicketCost = 150;
             const ticketTotalCost = ticketNewCount * 150;
             document.getElementById('ticketTotalCost').innerText = '$' + ticketTotalCost; 
+            ticketCalculateTotal();
         }
 
-        //for economy class ticket js code
-        /* document.getElementById('economy-ticket-increase').addEventListener('click',function(){
-            economyClassTicketHandle(true);
-        });
-        document.getElementById('economy-ticket-decrease').addEventListener('click',function(){
-            economyClassTicketHandle(false);
-        });  */
+        
         function economyClassTicketHandle(isIncrease){
             const ticketInput = document.getElementById('economy-ticket-quantity');
             const ticketQuantity = parseInt(ticketInput.value);
@@ -159,7 +148,22 @@
             // const firstClassTicketCost = 100;
             const economyTicketTotalCost = ticketNewCount * 100;
             document.getElementById('economyTicketTotalCost').innerText = '$' + economyTicketTotalCost;
+            ticketCalculateTotal();
         }
+        function ticketCalculateTotal(){
+           const firstClassTicketInput = document.getElementById('ticket-quantity');
+           const firstClassTicketCount = parseInt(firstClassTicketInput.value);
+
+           const economyClassTicketInput = document.getElementById('economy-ticket-quantity');
+           const economyClassTicketCount = parseInt(economyClassTicketInput.value);
+           const totalCost = firstClassTicketCount * 150 + economyClassTicketCount * 100;
+           document.getElementById('total-ticket-price').innerText = '$' + totalCost;
+           const tax = totalCost * 0.1;
+           document.getElementById('tax-amount') .innerText = '$' + tax;
+           const grandTotal = totalCost + tax;
+           document.getElementById('total-amount').innerText = '$' + grandTotal;
+        }
+
 
 
     </script>
